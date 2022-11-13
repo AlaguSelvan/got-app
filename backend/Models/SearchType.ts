@@ -1,6 +1,6 @@
 export enum SearchType {
 	KilledBy = 'killedBy',
 	CharacterName = 'characterName',
-	Parent = 'parents',
+	Parent = 'parent',
 	isRoyal = 'royal'
 }

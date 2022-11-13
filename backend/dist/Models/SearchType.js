@@ -5,6 +5,6 @@ var SearchType;
 (function (SearchType) {
     SearchType["KilledBy"] = "killedBy";
     SearchType["CharacterName"] = "characterName";
-    SearchType["Parent"] = "parents";
+    SearchType["Parent"] = "parent";
     SearchType["isRoyal"] = "royal";
 })(SearchType = exports.SearchType || (exports.SearchType = {}));
