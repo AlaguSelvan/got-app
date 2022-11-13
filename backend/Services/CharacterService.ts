@@ -6,7 +6,7 @@ class CharacterService {
 
 	private characters: any[] = [];
 	private pageNo: number = 1
-	private limit: number = 10
+	private limit: number = 50
 
 	public constructor({pageNo = 1, limit = 10}) {
 		this.characters = characters;

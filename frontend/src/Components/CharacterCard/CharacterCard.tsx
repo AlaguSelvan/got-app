@@ -8,18 +8,17 @@ const CharacterCard = ({ character }: ICharacterCard) => {
 	return (
 		<div className="character-card">
 			<div className="card-top-info">
-				{character.houseName ?
-					<p>{character.houseName}</p>
-				: null}
-				{character.royal ? (
-					<div>
-						<img src="https://library.kissclipart.com/20190220/fkq/kissclipart-game-of-thrones-taht-clipart-tyrion-lannister-clip-b887f1ea132f025c.png" width={40} height={40} alt={"royal"}/>
+				<div className='card-home-text'>
+					{character.houseName ? (
+							<p>{character.houseName}</p>
+							)
+							: null}
 					</div>
-				) : (
-					<div>
-						<img src="https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg" width="40" height="40" alt={character.characterName + "default_img"} />
+				<div className='card-royal-img'>
+					{character.royal ? (
+							<img src="https://library.kissclipart.com/20190220/fkq/kissclipart-game-of-thrones-taht-clipart-tyrion-lannister-clip-b887f1ea132f025c.png" width={40} height={40} alt={"royal"}/>
+					) : null}
 					</div>
-				)}
 			</div>
 			<div className='card-body'>
 				{character.characterImageThumb ? (

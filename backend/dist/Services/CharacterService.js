@@ -9,7 +9,7 @@ class CharacterService {
     constructor({ pageNo = 1, limit = 10 }) {
         this.characters = [];
         this.pageNo = 1;
-        this.limit = 10;
+        this.limit = 50;
         this.characters = characters_1.default;
         this.pageNo = pageNo;
         this.limit = limit;

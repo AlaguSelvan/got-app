@@ -1,8 +1,7 @@
 enum FilterType {
 	Name = "characterName",
 	KilledBy = "killedBy",
-	Parent = "parent",
-	Royal = "royal",
+	Parent = "parent"
 }
 
 export default FilterType

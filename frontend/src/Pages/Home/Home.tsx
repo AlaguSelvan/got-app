@@ -7,7 +7,6 @@ import Pagination from '../../Components/Pagination/Pagination';
 
 import useDebounce from '../../hooks/useDebounce';
 
-let PageSize = 10;
 
 const Home = () => {
 	const [characterData, setCharacterData] = useState<Character[]>([])
@@ -15,13 +14,24 @@ const Home = () => {
 	const [filterBy, setFilterBy] = useState<FilterType>(FilterType.Name)
 	const [filterText, setFilterText] = useState<string>("")
 	const [currentPage, setCurrentPage] = useState(1);
+	const [ pageSize, setPageSize ] = useState(15)
+	const [royal, setRoyal] = React.useState(false);
+	const [forceUpdateCurrent, setForceUpdateCurrent] = React.useState(false);
+	const [forceUpdateFilter, setForceUpdateFilter] = React.useState(false);
+
 	const debouncedFilterText = useDebounce(filterText, 500);
 
 	const currentData = useMemo(() => {
-		const firstPageIndex = (currentPage - 1) * PageSize;
-		const lastPageIndex = firstPageIndex + PageSize;
+		const firstPageIndex = (currentPage - 1) * pageSize;
+		const lastPageIndex = firstPageIndex + pageSize;
 		return characterData.slice(firstPageIndex, lastPageIndex);
-	}, [currentPage, characterData]);
+	}, [currentPage, characterData, pageSize, forceUpdateCurrent]);
+
+	const filteredPaginatedData = useMemo(() => {
+		const firstPageIndex = (currentPage - 1) * pageSize;
+		const lastPageIndex = firstPageIndex + pageSize;
+		return filteredData.slice(firstPageIndex, lastPageIndex);
+	}, [currentPage, filteredData, pageSize, forceUpdateFilter]);
 
 	useEffect(() => {
 		fetchData()
@@ -78,18 +88,27 @@ const Home = () => {
 					}
 				</select>
 				<input type={'text'} value={filterText} placeholder={`Search by  ${filterBy}`} onChange={onFilterTextChange} />
+				{/* <label>
+					<input
+						type="checkbox"
+						checked={royal}
+						onChange={changeRoyal}
+					/>
+					Royal
+				</label> */}
 			</div>
-			<div>
+			<div className="record-display-area">
 				<p> Results Count: {filterText ? filteredData.length : characterData.length} records</p>
+				<p> show per Page: {pageSize} records</p>
 			</div>
 			<div className={'list-area'}>
-				{filterText ? filteredData.map(Characters) : currentData.length ? currentData.map(Characters) : null}
+				{filterText ? filteredPaginatedData.map(Characters) : currentData.length ? currentData.map(Characters) : null}
 			</div>
 			<Pagination
 				className={"pagination-bar"}
 				currentPage={currentPage}
-				totalCount={characterData.length}
-				pageSize={PageSize}
+				totalCount={filterText ? filteredPaginatedData.length : characterData.length}
+				pageSize={pageSize}
 				onPageChange={page => setCurrentPage(page)} siblingCount={2}
 			/>
 		</>
