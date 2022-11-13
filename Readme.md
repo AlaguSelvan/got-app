@@ -76,12 +76,12 @@ Here is the structure of the app, which serves as generally accepted guidelines 
 │   └── index.html                  # HTML File for serving Content to the Web.
 │   └── logo192.png                 # logo file.
 │   └── manifest.json               # Manifest file for PWA.
-│── src                             # Logic goes here
+└── src                             # Logic goes here
 │   └── Components                  # Reusable Components go here
 │   └── hooks                       # Reusable hooks go here.
 │   └── Models                      # Interface definition for our app goes here.
 │   └── Pages                       # Pages go here.
-│   └── App.tsx                     # Main File is here.
+└── App.tsx                         # Main File is here.
 
 ```
 
