@@ -87,7 +87,7 @@ Here is the structure of the app, which serves as generally accepted guidelines 
 
 ### Important Information
 
-This Boilerplate is still in Beta, It will work fine on Development and Production, but still some minor updates and fixes are there which will be fixed soon and This Boilerplate will be ready for everyone.
+Please run backend & frontend together to run the application.
 
 
 ## TODO:
