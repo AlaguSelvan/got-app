@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { IUsePagination } from "../Interfaces/Pagination";
+import { IUsePagination } from "../Models/Pagination";
 
 export const DOTS = '...';
 

@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import { useEffect } from 'react';
 
 import { UsePagination, DOTS } from '../../hooks/UsePagination';
-import { IPaginationProps } from '../../Interfaces/Pagination';
+import { IPaginationProps } from '../../Models/Pagination';
 
 
 const Pagination = (props: IPaginationProps) => {
