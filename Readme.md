@@ -25,7 +25,8 @@ npm install
 **3. Start to run it:**
 
 ```sh
-yarn start or npm dev # Running Client side with Dev or Prod Config.
+yarn dev or npm run dev # Running server side with Dev Config.
+yarn start or npm run start # Running client side with Dev Config.
 yarn build or npm run build # Building bundle
 ```
 
