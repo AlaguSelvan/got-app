@@ -8,7 +8,7 @@ class CharacterService {
 	private pageNo: number = 1
 	private limit: number = 50
 
-	public constructor({pageNo = 1, limit = 10}) {
+	public constructor({pageNo = 1, limit = 50}) {
 		this.characters = characters;
 		this.pageNo = pageNo;
 		this.limit = limit;
