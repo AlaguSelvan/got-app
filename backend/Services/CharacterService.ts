@@ -61,7 +61,8 @@ class CharacterService {
 	}
 
 	public searchCharacterByRoyal(isRoyal: boolean) {
-		return characters.filter((character) => character.royal === isRoyal)
+		const data = characters.filter((character) => character.royal === isRoyal)
+		return Paginate<any>(data, this.limit, this.pageNo);
 	}
 
 }

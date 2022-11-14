@@ -11,6 +11,7 @@ const port = process.env.PORT;
 
 // @ts-ignore
 app.use(express.json());
+
 // @ts-ignore
 app.use(cors())
 
