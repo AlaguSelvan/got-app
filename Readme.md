@@ -43,6 +43,12 @@ The Backend App Will Run at [http://localhost:8000](http://localhost:8000)
 | `build`            | Build your typerscript app.                                                      |
 | `dev`              | Build and run our app simultaneously.                                            |
 
+## Front Script Commands
+
+| `npm run <script>`    | Description                                                                      |
+| ------------------ | -------------------------------------------------------------------------------- |
+| `start`            | Runs your client at `localhost:3000`.                                            |
+
 ## Backend App Structure
 
 Here is the structure of the app, which serves as generally accepted guidelines and patterns for building scalable apps.

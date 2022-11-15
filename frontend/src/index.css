@@ -35,7 +35,7 @@ select {
 	text-align: center;
 	padding: 12px;
 	text-decoration: none;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 25px;
 	border-radius: 4px;
 }
@@ -69,8 +69,15 @@ select {
 	justify-content: space-between;
 }
 
+.card-top-body {
+	display: flex;
+	height: 108px;
+	column-gap: 1em;
+}
+
 .card-body {
 	display: flex;
+	flex-direction: column;
 }
 
 .search-area {
@@ -98,6 +105,38 @@ select {
 	list-style: none;
 }
 
+.actor-details {
+	border: 1px solid black;
+}
+
+.killedBy-details {
+	border: 1px solid black;
+}
+
+.actor-details >ul {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.actor-list >ul {
+}
+
+.killedBy-details > ul {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.killedBy-list {
+	
+}
+
+.card-list-area {
+	display: flex;
+	flex-direction: column;
+}
+
 .App {
 	display: flex;
 	flex-direction: column;
@@ -115,15 +154,16 @@ select {
 .card-top-info {
 	display: flex;
 	justify-content: space-between;
+	border: 1px solid black
 }
 
 .character-card {
 	display: flex;
 	flex-direction: column;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 	border: 1px solid black;
-	width: 225px;
-	height: 225px;
+	width: 355px;
+	height: 309px;
 }
 
 .character-card:hover {

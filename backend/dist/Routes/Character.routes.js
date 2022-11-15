@@ -7,8 +7,9 @@ const express_1 = __importDefault(require("express"));
 const SearchType_1 = require("../Models/SearchType");
 const CharacterService_1 = __importDefault(require("../Services/CharacterService"));
 const characterRouter = express_1.default.Router();
-const limit = 1000;
+const limit = 10000;
 const characterService = new CharacterService_1.default({ limit });
+// Get Characters by Name, KilledBy, Parent
 characterRouter.get('/', (req, res) => {
     if (req.query.pageNo) {
         characterService.updatePageNo(req.query.pageNo);
@@ -30,6 +31,7 @@ characterRouter.get('/', (req, res) => {
     }
     return res.json(characterService.charactersData);
 });
+// Display Character by Name
 characterRouter.get('/:characterName', (req, res) => {
     if (!req.params.characterName)
         return res.json([]);

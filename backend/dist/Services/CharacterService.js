@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const characters_1 = __importDefault(require("../data/characters"));
 const Paginate_1 = __importDefault(require("../Helper/Paginate"));
 class CharacterService {
-    constructor({ pageNo = 1, limit = 10 }) {
+    constructor({ pageNo = 1, limit = 50 }) {
         this.characters = [];
         this.pageNo = 1;
         this.limit = 50;
@@ -56,7 +56,8 @@ class CharacterService {
         return (0, Paginate_1.default)(output, this.limit, this.pageNo);
     }
     searchCharacterByRoyal(isRoyal) {
-        return characters_1.default.filter((character) => character.royal === isRoyal);
+        const data = characters_1.default.filter((character) => character.royal === isRoyal);
+        return (0, Paginate_1.default)(data, this.limit, this.pageNo);
     }
 }
 exports.default = CharacterService;

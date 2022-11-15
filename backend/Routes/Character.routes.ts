@@ -4,7 +4,7 @@ import CharacterService from '../Services/CharacterService';
 
 const characterRouter = express.Router();
 
-const limit = 30;
+const limit = 10000;
 
 const characterService = new CharacterService({limit});
 
