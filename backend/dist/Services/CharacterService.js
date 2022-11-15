@@ -33,7 +33,7 @@ class CharacterService {
     }
     searchCharacterByParent(parentName) {
         const output = [];
-        characters_1.default.forEach((character) => {
+        this.characters.forEach((character) => {
             var _a;
             return (_a = character.parents) === null || _a === void 0 ? void 0 : _a.forEach((parent) => {
                 if (parent.toLowerCase().includes(parentName.toLowerCase())) {
@@ -45,13 +45,33 @@ class CharacterService {
     }
     searchCharacterByKilledBy(killedBy) {
         const output = [];
-        characters_1.default.forEach((character) => {
+        this.characters.forEach((character) => {
             var _a;
             return (_a = character.killedBy) === null || _a === void 0 ? void 0 : _a.forEach((killedPerson) => {
                 if (killedPerson.toLowerCase().includes(killedBy.toLowerCase())) {
                     output.push(character);
                 }
             });
+        });
+        return (0, Paginate_1.default)(output, this.limit, this.pageNo);
+    }
+    searchCharacterByHouse(house) {
+        console.log("house here", house);
+        const output = [];
+        this.characters.forEach((character) => {
+            if (Array.isArray(character.houseName)) {
+                console.log("character.houseName", character.houseName);
+                character.houseName.forEach((house, idx) => {
+                    if (house.toLowerCase().includes(house.toLowerCase())) {
+                        output.push(character);
+                    }
+                });
+            }
+            else {
+                if (character.houseName && character.houseName.toLowerCase().includes(house.toLowerCase())) {
+                    output.push(character);
+                }
+            }
         });
         return (0, Paginate_1.default)(output, this.limit, this.pageNo);
     }

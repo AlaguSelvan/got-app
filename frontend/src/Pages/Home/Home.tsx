@@ -56,10 +56,12 @@ const Home = () => {
 		}
 	}
 
-	const fetchFilteredData = async (text: string | null = null, filterTerm: string | null = null) => {
+	const fetchFilteredData = async (text: string | null = null, filterTerm: string | null = null, isRoyal = null) => {
 		const searchTerm = text || filterText;
 		const searchBy = filterTerm || filterBy;
-		const apiData = await fetch(`http://localhost:8000/Characters?searchType=${searchBy}&searchValue=${searchTerm}`)
+		let apiUrl = `http://localhost:8000/Characters?searchType=${searchBy}&searchValue=${searchTerm}`
+		if(isRoyal === true || isRoyal === false) apiUrl + `&isRoyal=${isRoyal}`
+		const apiData = await fetch(apiUrl)
 		const characters = await apiData.json();
 		setFilteredData(characters || [])
 	}
@@ -71,6 +73,13 @@ const Home = () => {
 
 	const onFilterTextChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 		setFilterText(e.target.value)
+	}
+
+	const changeRoyal = () => {
+		if(filterText.length) {
+			
+		}
+		setRoyal(!royal)
 	}
 
 	const Characters = (character: Character, idx: number) => <CharacterCard character={character} key={idx} />
@@ -89,14 +98,14 @@ const Home = () => {
 					}
 				</select>
 				<input type={'text'} value={filterText} placeholder={`Search by  ${filterBy}`} onChange={onFilterTextChange} />
-				{/* <label>
+				<label>
 					<input
 						type="checkbox"
 						checked={royal}
 						onChange={changeRoyal}
 					/>
 					Royal
-				</label> */}
+				</label>
 			</div>
 			<div className="record-display-area">
 				<p> Results Count: {filterText ? filteredData.length : characterData.length} records</p>

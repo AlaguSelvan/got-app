@@ -24,6 +24,11 @@ characterRouter.get('/', (req, res) => {
 		return res.json(data);
 	}
 
+	if (req.query.searchType === SearchType.House) {
+		const data = characterService.searchCharacterByHouse(req.query.searchValue);
+		return res.json(data);
+	}
+
 	if (req.query.searchType === SearchType.Parent) {
 		const data = characterService.searchCharacterByParent(req.query.searchValue);
 		return res.json(data);

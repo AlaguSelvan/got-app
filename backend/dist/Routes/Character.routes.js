@@ -21,6 +21,10 @@ characterRouter.get('/', (req, res) => {
         const data = characterService.searchCharacterByKilledBy(req.query.searchValue);
         return res.json(data);
     }
+    if (req.query.searchType === SearchType_1.SearchType.House) {
+        const data = characterService.searchCharacterByHouse(req.query.searchValue);
+        return res.json(data);
+    }
     if (req.query.searchType === SearchType_1.SearchType.Parent) {
         const data = characterService.searchCharacterByParent(req.query.searchValue);
         return res.json(data);

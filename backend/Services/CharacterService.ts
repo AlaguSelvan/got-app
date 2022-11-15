@@ -38,7 +38,7 @@ class CharacterService {
 
 	public searchCharacterByParent(parentName: string) {
 		const output: any[] = []
-		characters.forEach((character) => {
+		this.characters.forEach((character: Character) => {
 			return character.parents?.forEach((parent) => {
 				if (parent.toLowerCase().includes(parentName.toLowerCase())) {
 					output.push(character)
@@ -50,7 +50,7 @@ class CharacterService {
 
 	public searchCharacterByKilledBy(killedBy: string) {
 		const output: any[] = []
-		characters.forEach((character) => {
+		this.characters.forEach((character: Character) => {
 			return character.killedBy?.forEach((killedPerson) => {
 				if (killedPerson.toLowerCase().includes(killedBy.toLowerCase())) {
 					output.push(character)
@@ -58,6 +58,27 @@ class CharacterService {
 			})
 		})
 		return Paginate<Character>(output, this.limit, this.pageNo);
+	}
+
+	public searchCharacterByHouse(house: string) {
+		console.log("house here", house)
+		const output: any[] = []
+		this.characters.forEach((character) => {
+			if (Array.isArray(character.houseName)) {
+				console.log("character.houseName", character.houseName)
+				character.houseName.forEach((house: string, idx: number) => {
+					if (house.toLowerCase().includes(house.toLowerCase())) {
+						output.push(character)
+
+					}
+				})
+			} else {
+				if (character.houseName && character.houseName.toLowerCase().includes(house.toLowerCase()) ) {
+					output.push(character)
+				}
+			}
+		})
+		return Paginate<Character>(output, this.limit, this.pageNo)
 	}
 
 	public searchCharacterByRoyal(isRoyal: boolean) {

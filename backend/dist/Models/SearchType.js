@@ -7,4 +7,5 @@ var SearchType;
     SearchType["CharacterName"] = "characterName";
     SearchType["Parent"] = "parent";
     SearchType["isRoyal"] = "royal";
+    SearchType["House"] = "House";
 })(SearchType = exports.SearchType || (exports.SearchType = {}));
