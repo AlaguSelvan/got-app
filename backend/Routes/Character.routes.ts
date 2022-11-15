@@ -19,33 +19,44 @@ characterRouter.get('/', (req, res) => {
 		characterService.updateLimit(req.query.limit);
 	}
 
-	if(req.query.isRoyal) {
-		// TODO: Update Royal
-		const data = characterService.searchCharacterByKilledBy(req.query.searchValue);
-		return res.json(data);
-	}
+	const isRoyal = req.query.isRoyal === "true" ? true : req.query.isRoyal === "false" ? false : null
+	// if(req.query.isRoyal) {
+	// 	// TODO: Update Royal
+	// 	characterService.updateRoyal(isRoyal);
+	// }
+
+	let data = characterService.charactersData
 
 	if (req.query.searchType === SearchType.KilledBy) {
-		const data = characterService.searchCharacterByKilledBy(req.query.searchValue);
-		return res.json(data);
+		data = characterService.searchCharacterByKilledBy(req.query.searchValue);
 	}
 
 	if (req.query.searchType === SearchType.House) {
-		const data = characterService.searchCharacterByHouse(req.query.searchValue);
-		return res.json(data);
+		data = characterService.searchCharacterByHouse(req.query.searchValue);
 	}
 
 	if (req.query.searchType === SearchType.Parent) {
-		const data = characterService.searchCharacterByParent(req.query.searchValue);
-		return res.json(data);
+		data = characterService.searchCharacterByParent(req.query.searchValue);
 	}
 
 	if (req.query.searchType === SearchType.CharacterName) {
-		const data = characterService.searchCharacterByName(req.query.searchValue);
-		return res.json(data);
+		data = characterService.searchCharacterByName(req.query.searchValue);
 	}
 
-	return res.json(characterService.charactersData);
+	if (isRoyal === true) {
+		data = data.filter((character, idx) => {
+			return character.royal === isRoyal;
+		})
+	}
+
+
+	if (isRoyal === false) {
+		data = data.filter((character, idx) => {
+			return !character.royal;
+		})
+	}
+
+	return res.json(data);
 
 })
 

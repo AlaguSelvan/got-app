@@ -8,7 +8,7 @@ class CharacterService {
 	private pageNo: number = 1
 	private limit: number = 50
 
-	public constructor({pageNo = 1, limit = 50}) {
+	public constructor({ pageNo = 1, limit = 50}) {
 		this.characters = characters;
 		this.pageNo = pageNo;
 		this.limit = limit;
@@ -21,7 +21,7 @@ class CharacterService {
 	public updateLimit(limit: number) {
 		this.limit = limit;
 	}
-
+	
 	public searchCharacterByName(name: string) {
 		const data = this.characters.filter((character) => character.characterName.toLowerCase().includes(name.toLowerCase()))
 		return Paginate<Character>(data, this.limit, this.pageNo)
@@ -48,7 +48,7 @@ class CharacterService {
 		return Paginate<Character>(output, this.limit, this.pageNo);
 	}
 
-	public searchCharacterByKilledBy(killedBy: string) {
+	public searchCharacterByKilledBy(killedBy: string): Character[] {
 		const output: any[] = []
 		this.characters.forEach((character: Character) => {
 			return character.killedBy?.forEach((killedPerson) => {
@@ -61,19 +61,18 @@ class CharacterService {
 	}
 
 	public searchCharacterByHouse(house: string) {
-		console.log("house here", house)
 		const output: any[] = []
 		this.characters.forEach((character) => {
 			if (Array.isArray(character.houseName)) {
-				console.log("character.houseName", character.houseName)
 				character.houseName.forEach((house: string, idx: number) => {
 					if (house.toLowerCase().includes(house.toLowerCase())) {
+
 						output.push(character)
 
 					}
 				})
 			} else {
-				if (character.houseName && character.houseName.toLowerCase().includes(house.toLowerCase()) ) {
+				if (character.houseName && character.houseName.toLowerCase().includes(house.toLowerCase())) {
 					output.push(character)
 				}
 			}
@@ -81,8 +80,8 @@ class CharacterService {
 		return Paginate<Character>(output, this.limit, this.pageNo)
 	}
 
-	public searchCharacterByRoyal(isRoyal: boolean) {
-		const data = characters.filter((character) => character.royal === isRoyal)
+	public searchCharacterByRoyal(isRoyal: boolean | undefined) {
+		const data = this.characters.filter((character) => character.royal === isRoyal)
 		return Paginate<any>(data, this.limit, this.pageNo);
 	}
 

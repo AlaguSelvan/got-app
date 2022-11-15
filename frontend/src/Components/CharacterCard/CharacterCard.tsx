@@ -51,7 +51,7 @@ const CharacterCard = ({ character }: ICharacterCard) => {
 								{character.actors && character.actors.length > 0 ? character.actors.map(({ actorName }, idx) => {
 									return (
 										<li key={idx}>
-											<b>{actorName}  {idx === character.actors.length - 1 ? "" : ","}</b>
+											<b>{actorName}{idx === character.actors.length - 1 ? "" : ","}</b>
 										</li>
 									)
 								}) : <li> N/A</li>}

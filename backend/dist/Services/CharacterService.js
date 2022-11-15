@@ -56,11 +56,9 @@ class CharacterService {
         return (0, Paginate_1.default)(output, this.limit, this.pageNo);
     }
     searchCharacterByHouse(house) {
-        console.log("house here", house);
         const output = [];
         this.characters.forEach((character) => {
             if (Array.isArray(character.houseName)) {
-                console.log("character.houseName", character.houseName);
                 character.houseName.forEach((house, idx) => {
                     if (house.toLowerCase().includes(house.toLowerCase())) {
                         output.push(character);
@@ -76,7 +74,7 @@ class CharacterService {
         return (0, Paginate_1.default)(output, this.limit, this.pageNo);
     }
     searchCharacterByRoyal(isRoyal) {
-        const data = characters_1.default.filter((character) => character.royal === isRoyal);
+        const data = this.characters.filter((character) => character.royal === isRoyal);
         return (0, Paginate_1.default)(data, this.limit, this.pageNo);
     }
 }

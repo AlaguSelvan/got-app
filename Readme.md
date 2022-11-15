@@ -2,6 +2,22 @@
 
 Full-Stack App for Game Of Thrones
 
+
+# API Details
+
+Get All Characters [http://localhost:8000/Characters](http://localhost:8000/Characters)
+
+Get By House Name [http://localhost:8000/Characters?searchType=House&searchValue=Lannister](http://localhost:8000/Characters?searchType=House&searchValue=Lannister)
+
+Get By Killed By [http://localhost:8000/Characters?searchType=killedBy&searchValue=jaime](http://localhost:8000/Characters?searchType=killedBy&searchValue=jaime)
+
+Get By parent [http://localhost:8000/Characters?searchType=parent&searchValue=jaime](http://localhost:8000/Characters?searchType=parent&searchValue=jaime)
+
+Get By Character Name [http://localhost:8000/Characters?searchType=parent&searchValue=jaime](http://localhost:8000/Characters?searchType=parent&searchValue=jaime)
+
+#### NOTE: Add ```IsRoyal=true || IsRoyal = false``` to get characters by royal flag
+
+
 ## Requirements
 
 - [node](https://nodejs.org/en) = 16.18
@@ -95,8 +111,6 @@ Here is the structure of the app, which serves as generally accepted guidelines 
 ### Important Information
 
 Please run backend & frontend together to run the application.
-
-
 ## TODO:
 
 Fix Css

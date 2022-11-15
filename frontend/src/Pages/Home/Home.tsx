@@ -15,7 +15,6 @@ const Home = () => {
 	const [filterText, setFilterText] = useState<string>("")
 	const [currentPage, setCurrentPage] = useState(1);
 	const [ pageSize, setPageSize ] = useState(15)
-	const [royal, setRoyal] = React.useState(false);
 	const [forceUpdateCurrent, setForceUpdateCurrent] = React.useState(false);
 	const [forceUpdateFilter, setForceUpdateFilter] = React.useState(false);
 
@@ -56,11 +55,25 @@ const Home = () => {
 		}
 	}
 
-	const fetchFilteredData = async (text: string | null = null, filterTerm: string | null = null, isRoyal = null) => {
+	const fetchFilteredData = async (text: string | null = null, filterTerm: string | null = null, isRoyal: Boolean = false) => {
 		const searchTerm = text || filterText;
 		const searchBy = filterTerm || filterBy;
+		
 		let apiUrl = `http://localhost:8000/Characters?searchType=${searchBy}&searchValue=${searchTerm}`
-		if(isRoyal === true || isRoyal === false) apiUrl + `&isRoyal=${isRoyal}`
+
+		if(isRoyal === true) apiUrl + `&isRoyal=${isRoyal}`
+		const apiData = await fetch(apiUrl)
+		const characters = await apiData.json();
+		setFilteredData(characters || [])
+	}
+
+	const fetchFilteredDataWithRoyal = async (text: string | null = null, filterTerm: string | null = null, isRoyal: Boolean = false) => {
+		const searchTerm = text || filterText;
+		const searchBy = filterTerm || filterBy;
+		
+		let apiUrl = `http://localhost:8000/Characters?searchType=${searchBy}&searchValue=${searchTerm}`
+
+		if(isRoyal === true) apiUrl + `&isRoyal=${isRoyal}`
 		const apiData = await fetch(apiUrl)
 		const characters = await apiData.json();
 		setFilteredData(characters || [])
@@ -75,12 +88,6 @@ const Home = () => {
 		setFilterText(e.target.value)
 	}
 
-	const changeRoyal = () => {
-		if(filterText.length) {
-			
-		}
-		setRoyal(!royal)
-	}
 
 	const Characters = (character: Character, idx: number) => <CharacterCard character={character} key={idx} />
 
@@ -98,14 +105,6 @@ const Home = () => {
 					}
 				</select>
 				<input type={'text'} value={filterText} placeholder={`Search by  ${filterBy}`} onChange={onFilterTextChange} />
-				<label>
-					<input
-						type="checkbox"
-						checked={royal}
-						onChange={changeRoyal}
-					/>
-					Royal
-				</label>
 			</div>
 			<div className="record-display-area">
 				<p> Results Count: {filterText ? filteredData.length : characterData.length} records</p>
