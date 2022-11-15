@@ -17,6 +17,11 @@ characterRouter.get('/', (req, res) => {
     if (req.query.limit) {
         characterService.updateLimit(req.query.limit);
     }
+    if (req.query.isRoyal) {
+        // TODO: Update Royal
+        const data = characterService.searchCharacterByKilledBy(req.query.searchValue);
+        return res.json(data);
+    }
     if (req.query.searchType === SearchType_1.SearchType.KilledBy) {
         const data = characterService.searchCharacterByKilledBy(req.query.searchValue);
         return res.json(data);
