@@ -34,41 +34,54 @@ const CharacterCard = ({ character }: ICharacterCard) => {
 					)}
 					<div className='content-card-area'>
 						<div className={'character-details'}>
-							<b>{character.characterName}</b>
+							<p>Character Name: <b>{character.characterName}</b> </p>
 						</div>
 						<div className={'character-details'}>
-							<p> Played By: {character.actorName}</p>
+							{character.actorName ? 
+								<p>Played By: <b>{character.actorName}</b> </p>
+							: null}
 						</div>
 					</div>
 				</div>
 				<div className='card-list-area'>
 					<div className={'actor-details'}>
-						{character.actors && character.actors.length > 0 ? (
+						{!character.actorName && character.actors && character.actors.length > 0 ? (
 							<ul className='actor-list'>
 								Played By:
-								{character.actors.map(({ actorName }, idx) => {
+								{character.actors && character.actors.length > 0 ? character.actors.map(({ actorName }, idx) => {
 									return (
 										<li key={idx}>
-											Actor: {actorName}  {idx === character.actors.length - 1 ? "" : ","}
+											<b>{actorName}  {idx === character.actors.length - 1 ? "" : ","}</b>
 										</li>
 									)
-								})}
+								}) : <li> N/A</li>}
 							</ul>
-						) : null}
+
+					) : null}
 					</div>
 					<div className='killedBy-details'>
-						{character.killedBy && character.killedBy.length > 0 ? (
 							<ul className='killedBy-list'>
 								Killed By:
-								{character.killedBy.map((actor, idx) => {
+								{character.killedBy && character.killedBy.length > 0 ?character.killedBy.map((actor, idx) => {
 									return (
 										<li key={idx}>
-											{actor} {idx === character.killedBy.length - 1 ? "" : ","}
+											<b>{actor} {idx === character.killedBy.length - 1 ? "" : ","}</b>
 										</li>
 									)
-								})}
+								}) : null}
 							</ul>
-						) : null}
+					</div>
+					<div className='killedBy-details'>
+							<ul className='killedBy-list'>
+								Parents:
+								{character.parents && character.parents.length > 0 ?character.parents.map((parent, idx) => {
+									return (
+										<li key={idx}>
+											<b>{parent} {idx === character.parents.length - 1 ? "" : ","}</b>
+										</li>
+									)
+								}) : <li> N/A</li>}
+							</ul>
 					</div>
 				</div>
 

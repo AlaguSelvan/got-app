@@ -56,15 +56,16 @@ const Home = () => {
 		}
 	}
 
-	const fetchFilteredData = async (text: string | null = null) => {
+	const fetchFilteredData = async (text: string | null = null, filterTerm: string | null = null) => {
 		const searchTerm = text || filterText;
-		const apiData = await fetch(`http://localhost:8000/Characters?searchType=${filterBy}&searchValue=${searchTerm}`)
+		const searchBy = filterTerm || filterBy;
+		const apiData = await fetch(`http://localhost:8000/Characters?searchType=${searchBy}&searchValue=${searchTerm}`)
 		const characters = await apiData.json();
 		setFilteredData(characters || [])
 	}
 
 	const handleFilterTypeChange: React.ChangeEventHandler<HTMLSelectElement> = (event) => {
-		fetchFilteredData()
+		fetchFilteredData(null, event.target.value as FilterType)
 		setFilterBy(event.target.value as FilterType)
 	}
 

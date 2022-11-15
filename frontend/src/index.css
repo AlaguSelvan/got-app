@@ -21,6 +21,16 @@ select {
 	border-radius: 4px;
 	box-sizing: border-box;
 }
+ul {
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-inline-start: 0px;
+	margin-block-start: 1em;
+	padding-inline-start: 4px;
+}
 
 .header {
 	overflow: hidden;
@@ -89,7 +99,7 @@ select {
 .content-card-area {
 	display: flex;
 	flex-direction: column;
-	width: 200px;
+	width: 100%;
 }
 
 .card-home-text {
@@ -126,6 +136,14 @@ select {
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
+	list-style: none;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+	margin-inline-start: 0px;
+	margin-block-start: 1em;
+	padding-inline-start: 4px;
 }
 
 .killedBy-list {
@@ -162,8 +180,8 @@ select {
 	flex-direction: column;
 	box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 	border: 1px solid black;
-	width: 355px;
-	height: 309px;
+	width: 356px;
+	height: 356px;
 }
 
 .character-card:hover {
