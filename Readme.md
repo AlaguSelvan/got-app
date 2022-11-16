@@ -15,6 +15,10 @@ Get By parent [http://localhost:8000/Characters?searchType=parent&searchValue=ja
 
 Get By Character Name [http://localhost:8000/Characters?searchType=parent&searchValue=jaime](http://localhost:8000/Characters?searchType=parent&searchValue=jaime)
 
+Get By Characters by skip & limit [http://localhost:8000/Characters?pageNo=2&limit=1](http://localhost:8000/Characters?pageNo=2&limit=1)
+
+#### NOTE: Add ```&pageNo=1``` to get records by pageNo & Add ```&limit=5``` to limit records.
+
 #### NOTE: Add ```IsRoyal=true || IsRoyal = false``` to get characters by royal flag
 
 

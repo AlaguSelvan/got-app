@@ -17,11 +17,6 @@ characterRouter.get('/', (req, res) => {
     if (req.query.limit) {
         characterService.updateLimit(req.query.limit);
     }
-    const isRoyal = req.query.isRoyal === "true" ? true : req.query.isRoyal === "false" ? false : null;
-    // if(req.query.isRoyal) {
-    // 	// TODO: Update Royal
-    // 	characterService.updateRoyal(isRoyal);
-    // }
     let data = characterService.charactersData;
     if (req.query.searchType === SearchType_1.SearchType.KilledBy) {
         data = characterService.searchCharacterByKilledBy(req.query.searchValue);
@@ -34,16 +29,6 @@ characterRouter.get('/', (req, res) => {
     }
     if (req.query.searchType === SearchType_1.SearchType.CharacterName) {
         data = characterService.searchCharacterByName(req.query.searchValue);
-    }
-    if (isRoyal === true) {
-        data = data.filter((character, idx) => {
-            return character.royal === isRoyal;
-        });
-    }
-    if (isRoyal === false) {
-        data = data.filter((character, idx) => {
-            return !character.royal;
-        });
     }
     return res.json(data);
 });
